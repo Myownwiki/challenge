@@ -7,8 +7,12 @@ import re
 
 
 urlpatterns = [
-    path('users/', views.userList.as_view()),
-    path('hello/<int:pk>/', views.userDetail.as_view()),
+    path('hello/users/', views.userList.as_view()),
+    #path('hello/<int:pk>/', views.userDetail.as_view()),
+    #path('hello/(?P<username>\w+)/$', views.userDetail),
+    url(r'^hello/(?P<username>\w+)/$', 
+                       views.userDetail,
+                       name='userDetails'),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)
