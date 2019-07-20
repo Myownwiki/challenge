@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils.encoding import force_text
-from django.core.validators import validate_slug, validate_email, RegexValidator
-import re
+from django.core.validators import RegexValidator
 
 class users(models.Model) :
     alphanumeric = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabets are allowed.')

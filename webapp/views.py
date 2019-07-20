@@ -1,5 +1,3 @@
-from django.http import HttpRequest
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView 
@@ -7,12 +5,16 @@ from rest_framework.response import Response
 from rest_framework import status
 from . models import users
 from . serializers import usersserializers
-from datetime import *
+from datetime import date
 from django.http import Http404
 from django.test import signals
 import logging
-from datetime import *
+import calendar
+import datetime
 
+def calBirthday(user):
+    print ('Hello World>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    
 
 class userList(APIView):
     
@@ -41,8 +43,15 @@ def userDetail(request, username):
 
     if request.method == 'GET':
         serializer = usersserializers(user)
-        return Response(serializer.data)
-        
+        today=date.today()
+        user_dob = user.user_dob
+        current_year_dob = user_dob.replace(year=today.year)
+        delta = today - current_year_dob
+        if (delta.days == 0):
+            return Response({"message": "Today is your birthday! Happy Birthday!"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "Your Birthday is in next " + str(delta.days)+ "days."}, status=status.HTTP_200_OK)
+            
     elif request.method == 'PUT':
         serializer = usersserializers(user, data=request.data)
         if serializer.is_valid():
@@ -53,13 +62,4 @@ def userDetail(request, username):
     elif request.method == 'DELETE':
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def happyBirthday(date):
-        today = datetime.datetime.now()
-        if users.objects.filter(user_dob__month=today.month, user_dob__day=today.day)
-          print ("Happy Birthday " + username)
-        else 
-          nextdob= users.objects.filter(date.month - user_dob__month,date.day-user_dob__day)
-		  return (nextdob)
-    
-    
+   
