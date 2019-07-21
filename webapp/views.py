@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from rest_framework import status
-from . models import users
-from . serializers import usersserializers
+from . models import User
+from . serializers import Userserializers
 from datetime import date
 from django.http import Http404
 from django.test import signals
@@ -20,12 +20,12 @@ class userList(APIView):
     
 
    def get(self, request):
-       users1= users.objects.all()
-       serializer=usersserializers(users1, many= True)
+       user= User.objects.all()
+       serializer=Userserializers(user, many= True)
        return Response(serializer.data)
 
    def post(self, request, format=None):
-        serializer = usersserializers(data=request.data)
+        serializer = Userserializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -37,12 +37,12 @@ def userDetail(request, username):
     Retrieve, update or delete an user.
     """
     try:
-        user = users.objects.get(username=username)
-    except users.DoesNotExist:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = usersserializers(user)
+        serializer = Userserializers(user)
         today=date.today()
         user_dob = user.user_dob
         current_year_dob = user_dob.replace(year=today.year)
@@ -53,7 +53,7 @@ def userDetail(request, username):
             return Response({"message": "Your Birthday is in next " + str(delta.days)+ "days."}, status=status.HTTP_200_OK)
             
     elif request.method == 'PUT':
-        serializer = usersserializers(user, data=request.data)
+        serializer = Userserializers(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
