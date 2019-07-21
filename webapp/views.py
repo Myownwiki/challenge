@@ -3,29 +3,23 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import Http404
 from . models import User
 from . serializers import Userserializers
 from datetime import date
-from django.http import Http404
-from django.test import signals
 import logging
 import calendar
 import datetime
 
-def calBirthday(user):
-    print ('Hello World>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-    
-
 class userList(APIView):
+    def get(self, request):
+        user= User.objects.all()
+        serializer=Userserializers(user, many= True)
+        return Response(serializer.data)
     
-
-   def get(self, request):
-       user= User.objects.all()
-       serializer=Userserializers(user, many= True)
-       return Response(serializer.data)
-
-   def post(self, request, format=None):
+    def post(self, request):
         serializer = Userserializers(data=request.data)
+        #serializer = Userserializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -33,9 +27,6 @@ class userList(APIView):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def userDetail(request, username):
-    """
-    Retrieve, update or delete an user.
-    """
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
@@ -53,7 +44,7 @@ def userDetail(request, username):
             return Response({"message": "Your Birthday is in next " + str(delta.days)+ "days."}, status=status.HTTP_200_OK)
             
     elif request.method == 'PUT':
-        serializer = Userserializers(user, data=request.data)
+        serializer = Userserializers(user, data=request.data) 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
