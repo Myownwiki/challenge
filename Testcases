@@ -1,0 +1,36 @@
+Test cases
+============
+
+username :abc
+user_dob :2019-07-23
+
+
+username:hello
+user_dob:2019-07-22
+
+username:khushboo
+user_dob:2019-07-01
+
+
+username:ram
+user_dob:2019-07-31
+
+username:jack
+user_dob:2019-07-24
+
+For post and get all users details url will be 
+
+http://ip:port/hello/users/
+
+For get, put, delete
+url wl be
+
+http://ip:port/hello/<username>/
+
+For post and post method body formate will be
+{
+ 	    "username": "ram",
+ 	    "user_dob": "2020-12-01"
+  }
+  
+  
