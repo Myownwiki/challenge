@@ -1,4 +1,4 @@
 Django==2.2.3
-python-decouple==3.0
-djangorestframework==3.6.2
-
+#python==latest
+djangorestframework==3.10.0
+#drf-extensions==0.3.1
