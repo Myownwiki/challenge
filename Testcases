@@ -2,21 +2,21 @@ Test cases
 ============
 
 username :abc
-user_dob :2019-07-23
+user_dob :2018-07-23
 
 
 username:hello
-user_dob:2019-07-22
+user_dob:2018-07-22
 
 username:khushboo
-user_dob:2019-07-01
+user_dob:2018-07-01
 
 
 username:ram
-user_dob:2019-07-31
+user_dob:2018-07-31
 
 username:jack
-user_dob:2019-07-24
+user_dob:2018-07-24
 
 For POST and GET ALL USERS details url will be 
 
@@ -41,17 +41,18 @@ http://52.212.115.173:8000/hello/abc/?format=json
 http://52.212.115.173:8000/hello/ram/?format=json
 
 
-AND for post method(select json format)
+ For POST method(select json format) in Postman
+ ====================================
 http://52.212.115.173:8000/hello/users/
 
-Boby 
+Body 
 
 {
  	    "username": "<username>",
  	    "user_dob": "yyyy-mm-dd"
   } 
 
-GET,PUT,DELETE method
+PUT method
 ===========
 http://52.212.115.173:8000/hello/<username>
 
@@ -60,3 +61,12 @@ Body
  	    "username": "<username>",
  	    "user_dob": "<yyyy-mm-dd>"
   } 
+
+
+GET method
+===========
+http://52.212.115.173:8000/hello/<username>
+
+DELETE Method
+=============
+http://52.212.115.173:8000/hello/<username>
