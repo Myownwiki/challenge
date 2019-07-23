@@ -18,22 +18,45 @@ user_dob:2019-07-31
 username:jack
 user_dob:2019-07-24
 
-For post and get all users details url will be 
+For POST and GET ALL USERS details url will be 
 
 http://ip:port/hello/users/
 
-For get, put, delete
+For GET, PUT, DELETE
 url wl be
 
 http://ip:port/hello/<username>/
 
-For post and post method body formate will be
+For post and post method body format will be
 {
  	    "username": "ram",
- 	    "user_dob": "2020-12-01"
+ 	    "user_dob": "2018-12-01"
   }
-  
-You can check on below server,for live testing
+  DEMO
+  ============
+The project is live and You can check on below link,for live testing
+In Browser (Google chrome)
+http://52.212.115.173:8000/hello/users/?format=json
+http://52.212.115.173:8000/hello/abc/?format=json
+http://52.212.115.173:8000/hello/ram/?format=json
+
+
+AND for post method(select json format)
 http://52.212.115.173:8000/hello/users/
-http://52.212.115.173:8000/hello/abc/
-http://52.212.115.173:8000/hello/ram/  
+
+Boby 
+
+{
+ 	    "username": "<username>",
+ 	    "user_dob": "yyyy-mm-dd"
+  } 
+
+GET,PUT,DELETE method
+===========
+http://52.212.115.173:8000/hello/<username>
+
+Body 
+{
+ 	    "username": "<username>",
+ 	    "user_dob": "<yyyy-mm-dd>"
+  } 
