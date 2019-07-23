@@ -38,6 +38,9 @@ def userDetail(request, username):
         user_dob = user.user_dob
         current_year_dob = user_dob.replace(year=today.year)
         delta = current_year_dob - today
+        if (delta.days < 0) :
+            current_year_dob = user_dob.replace(year=today.year+1)
+            delta = current_year_dob - today
         if (delta.days == 0):
             return Response({"message": "Today is your birthday! Happy Birthday!"}, status=status.HTTP_200_OK)
         else:
