@@ -19,8 +19,8 @@ RUN curl https://bootstrap.pypa.io/get-pip.py | python
 RUN  pip install -r requirement.txt
 RUN  pip install git+https://github.com/django-extensions/django-extensions.git@master
 # EXPOSE port 8000 to allow communication to/from server
-EXPOSE 8000
+#EXPOSE 8000
 # CMD specifcies the command to execute to start the server running.
-ENTRYPOINT ["/bin/bash", "-c", "python manage.py runserver"]
+#ENTRYPOINT ["/bin/bash", "-c", "python manage.py runserver"]
 # done!
 

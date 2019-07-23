@@ -33,4 +33,7 @@ For post and post method body formate will be
  	    "user_dob": "2020-12-01"
   }
   
-  
+You can check on below server,for live testing
+http://52.212.115.173:8000/hello/users/
+http://52.212.115.173:8000/hello/abc/
+http://52.212.115.173:8000/hello/ram/  
