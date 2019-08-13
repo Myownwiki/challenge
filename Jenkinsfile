@@ -14,10 +14,10 @@ node{
 
       def TAG=HELM_LIST_REVISION+'-'+GIT_SHORT_COMMIT+'-'+BUILD_NUMBER;
       sh '''echo TAG:'''+TAG+''' '''
-      sh '''docker tag hello-world 54.203.55.161:5000/hello-world:'''+TAG+''' '''
-      sh 'docker tag hello-world 54.203.55.161:5000/hello-world:stable'
-      sh 'docker push 54.203.55.161:5000/hello-world:stable'
-      sh '''docker push 54.203.55.161:5000/hello-world:'''+TAG+''' '''
+      sh '''docker tag hello-world nexusrepo/hello-world:'''+TAG+''' '''
+      sh 'docker tag hello-world nexusrepo0/hello-world:stable'
+      sh 'docker push nexusrepo/hello-world:stable'
+      sh '''docker push nexusrepo/hello-world:'''+TAG+''' '''
     }
   }
    stage('Deploy') {
@@ -27,8 +27,8 @@ node{
   }
   stage('Clean Up') {
     def TAG=HELM_LIST_REVISION+'-'+GIT_SHORT_COMMIT+'-'+BUILD_NUMBER;
-    sh '''docker rmi -f 54.203.55.161:5000/hello-world:'''+TAG+''' '''
-    sh 'docker rmi -f 54.203.55.161:5000/hello-world:stable'
+    sh '''docker rmi -f nexusrepo/hello-world:'''+TAG+''' '''
+    sh 'docker rmi -f nexusrepo/hello-world:stable'
     sh 'docker rmi -f hello-world'
   }
 } 
